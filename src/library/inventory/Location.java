@@ -4,19 +4,24 @@ package library.inventory;
  * Enum is a special "class" that represents a group of constants 
  * Only two valid Genders are FEMALE and MALE
  * 
- * @author Debbie Johnson
+ * @author Robert Schwartz
  * @version 1.0
  * @since 2021.02.16
  *
  */
-public enum Type {
+public enum Location {
 	/**
-	 * Type for female animals.
+	 * location for books in the basement.
 	 */
-	FEMALE,
+	BASEMENT,
 	
 	/**
-	 * Type for male animals.
+	 * location for books in the first floor.
 	 */
-	MALE
+	FIRST,
+	
+	/**
+	 * location for books in the second floor.
+	 */
+	SECOND
 }

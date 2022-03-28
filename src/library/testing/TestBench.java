@@ -25,7 +25,7 @@ public class TestBench {
 	/**
 	 * Stores all types of zoo animals as long as it's a derived from the Inventory class.
 	 */
-	private static List<Inventory> zooAnimals = new ArrayList<>();
+	private static List<Inventory> libraryItems = new ArrayList<>();
 	
 	/**
 	 * The default constructor currently isn't needed.
@@ -37,7 +37,7 @@ public class TestBench {
 	 * Unit test instantiation of an Inventory reference variable (object)
 	 * using the default constructor
 	 */
-	private static void unitTest1_Animal_Default() {
+	private static void unitTest1_Inventory_Default() {
 		
 		System.out.println();
 		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -46,15 +46,19 @@ public class TestBench {
 		//create an Inventory instance (object) using default constructor
 		Inventory inventory = new Inventory();
 
-		zooAnimals.add(inventory);
+		libraryItems.add(inventory);
 		
-		displayInfo(inventory);
+		TestBench.displayInfo(inventory);
 		
-		inventory.setAge(1);
-		inventory.setGender(Type.FEMALE);
-		inventory.setWeight(5.5);
+		inventory.setLocation(Location.BASEMENT);
+		inventory.setInventoryType(InventoryType.RESERVE);
+		inventory.setPrice(5.5);
 		
-		displayInfo(inventory);	
+		TestBench.displayInfo(inventory);	
+		
+		System.out.println();
+		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
 
 	}
 	
@@ -62,18 +66,22 @@ public class TestBench {
 	 * Unit test instantiation of an Inventory reference variable (object)
 	 * using the overload constructor
 	 */
-	private static void unitTest2_Animal_Overload() {	
+	private static void unitTest2_Inventory_Overload() {	
 		
 		System.out.println();
 		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		System.out.println();
 		
 		//create another Inventory instance (object) using overload constructor		
-		Inventory inventory = new Inventory(10, Type.FEMALE, 100.0);
+		Inventory inventory = new Inventory(Location.FIRST, InventoryType.RESERVE, 15.99);
 		
-		zooAnimals.add(inventory);
+		libraryItems.add(inventory);
 		
-		displayInfo(inventory);
+		TestBench.displayInfo(inventory);
+		
+		System.out.println();
+		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
 
 	}
 
@@ -81,7 +89,7 @@ public class TestBench {
 	 * Unit test instantiation of an Movie reference variable (object)
 	 * using the default constructor
 	 */
-	private static void unitTest3_Bird_Default() {
+	private static void unitTest3_Movie_Default() {
 		
 		System.out.println();
 		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -89,38 +97,46 @@ public class TestBench {
 		
 		//create a Movie instance (object) using default constructor
 		Movie movie = new Movie();
-		zooAnimals.add(movie);
+		libraryItems.add(movie);
 	
-		displayInfo(movie);
+		TestBench.displayInfo(movie);
 		
-		movie.setAge(1);
-		movie.setGender(Type.MALE);
-		movie.setWeight(0.5);
+		movie.setLocation(Location.BASEMENT);
+		movie.setInventoryType(InventoryType.CIRCULATING);
+		movie.setPrice(9.59);
 		
-		displayInfo(movie);
-		movie.eat();
-		movie.sleep();
-		movie.fly();
+		TestBench.displayInfo(movie);
+		movie.inLibrary();
+		movie.hold();
+		movie.show();
+		
+		System.out.println();
+		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
 	}
 
 	/**
 	 * This unit test is used to instantiation an Book reference variable (object)
 	 * using the overload constructor
 	 */
-	private static void unitTest4_Fish_Overload() {
+	private static void unitTest4_Book_Overload() {
 		
 		System.out.println();
 		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		System.out.println();
 		
 		//create a Book instance (object) using overload constructor		
-		Book book = new Book(2, Type.MALE, 10.5);
-		zooAnimals.add(book);
+		Book book = new Book(Location.SECOND, InventoryType.CIRCULATING, 10.5);
+		libraryItems.add(book);
 
-		displayInfo(book);
-		book.eat();
-		book.sleep();
-		book.swin();
+		TestBench.displayInfo(book);
+		book.inLibrary();
+		book.hold();
+		book.read();
+		
+		System.out.println();
+		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
 	}
 	
 	/**
@@ -133,47 +149,55 @@ public class TestBench {
 		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		System.out.println();
 		
-		Movie movie = new Movie(-2, Type.MALE, -10.5);	
+		Movie movie = new Movie(null, InventoryType.REFERENCE, -10.5);
+		libraryItems.add(movie);	
+		
 		TestBench.displayInfo(movie);
 		
-		movie.setWingspan(-1);
-		System.out.println("The bird's wingspan is " + movie.getWingspan());
+		movie.setLength(-1);
+		System.out.println("The movie's length is " + movie.getLength());
 
 		System.out.println();
 		
-		Book book = new Book(-2, Type.FEMALE, -10.5);	
+		Book book = new Book(null, InventoryType.RESERVE, -10.5);	
+		libraryItems.add(book);
+		
 		TestBench.displayInfo(book);
-		book.setWaterType(BookType.SALT);
-		System.out.println("The fish is a " + book.getWaterType() + " water fish");
+		book.setBookType(BookType.FICTION);
+		System.out.println("The book is a " + book.getBookType() + " book");
+		
+		System.out.println();
+		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
 
 	}
 		
 	/**
-	 * Display the Inventory reference variable's id, type, type, age, and weight
+	 * Display the Inventory reference variable's id, itemType, itemType, location, and price
 	 * 
 	 * @param inventory the reference variable data to be displayed
 	 */
 	private static void displayInfo(Inventory inventory) {
 		
-		System.out.printf("ID: %-3d  Type: %-10s Type: %-10s Age: %3d   Weight: %8.2f\n",
-				inventory.getId(), inventory.getType(), inventory.getGender(), inventory.getAge(), inventory.getWeight());
+		System.out.printf("ID: %-3d  InventoryType: %-10s InventoryType: %-10s Location: %-9s   Price: %8.2f\n",
+				inventory.getId(), inventory.getType(), inventory.getInventoryType(), inventory.getLocation(), inventory.getPrice());
 		
 	} // end of displayInfo
 
 	/**
 	 * Display all Zoo Animals stored in the ArrayList.
-	 * It will display the id, type, type, age, and weight
+	 * It will display the id, itemType, itemType, location, and price
 	 */
 	private static void displayReport() {
 		
 		System.out.println();
-		System.out.println("============== ZOO REPORT ============");
-		System.out.println("ID  Type       Type     Age   Weight");
-		System.out.println("=== ========== ========== === ========");
+		System.out.println("================= ZOO REPORT ================");
+		System.out.println("ID  ItemType   InventoryType  Location Price");
+		System.out.println("=== ========== ============== ======== ======");
 		
-		for (Inventory inventory : zooAnimals) {
-			System.out.printf("%-3d %-10s %-10s %3d %8.2f\n",
-					inventory.getId(), inventory.getType(), inventory.getGender(), inventory.getAge(), inventory.getWeight());
+		for (Inventory inventory : libraryItems) {
+			System.out.printf("%-3d %-10s %-14s %-9s %4.2f\n",
+					inventory.getId(), inventory.getType(), inventory.getInventoryType(), inventory.getLocation(), inventory.getPrice());
 		}
 		
 		System.out.println();
@@ -188,10 +212,10 @@ public class TestBench {
 	 */
 	public static void main(String[] args) {
 		
-		TestBench.unitTest1_Animal_Default();
-		TestBench.unitTest2_Animal_Overload();
-		TestBench.unitTest3_Bird_Default();
-		TestBench.unitTest4_Fish_Overload();
+		TestBench.unitTest1_Inventory_Default();
+		TestBench.unitTest2_Inventory_Overload();
+		TestBench.unitTest3_Movie_Default();
+		TestBench.unitTest4_Book_Overload();
 		TestBench.unitTest5_Invalid_Data();
 		
 		TestBench.displayReport();

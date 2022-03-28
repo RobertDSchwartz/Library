@@ -6,65 +6,81 @@ package library.inventory;
 */
 public class Book extends Inventory {
 
-	final String type = "Book";
+	final String itemType = "Book";
 	
-	private BookType waterType;
+	private BookType bookType;
 		
 	// default constructor
 	public Book(){
 		/* Default age in years is 0.
-		 * Default type is null.
-		 * Default weight in pounds is 0.0.
+		 * Default itemType is null.
+		 * Default price in pounds is 0.0.
 		 */
-		this(0, null, 0.0); // age, type, weight
+		this(null, null, 0.0); // location, itemType, price
 	}
 	
 	/**
 	 * Overload constructor that allows setting the object's default fields (attributes).
 	 * 
-	 * @param age Default age in years is 0.
-	 * @param type Default type is null.
-	 * @param weight Default weight in pounds is 0.0.
+	 * @param location Default location is null.
+	 * @param inventoryType Default itemType is null.
+	 * @param price Default price in Dollars is 0.0.
 	 */
-	public Book(int age, Type type, double weight) {
-		super(age, type, weight);
-		this.waterType = null;
+	public Book(Location location, InventoryType inventoryType, double price) {
+		super(location, inventoryType, price);
+		this.bookType = null;
 	}
 	
 	/**
-	 * Get the Inventory's type.  This parent's class method has to be 
+	 * Get the Inventory's itemType.  This parent's class method has to be 
 	 * overridden in the subclass otherwise we would only see the parent's 
-	 * class type value of Inventory, and instead we want it to return Book.
+	 * class itemType value of Inventory, and instead we want it to return Book.
 	 */
 	@Override // Whenever you override a method, you should use the @Override annotation so the compile verifies	
 	public String getType() {
-		return this.type;
+		return this.itemType;
 	}
 	
 	/**
-	 * Get the fish's BookType type (enum: FRESH or SALT).
-	 * We do not need to validate BookType type because we are using an enum
+	 * Get the fish's BookType itemType (enum: FRESH or SALT).
+	 * We do not need to validate BookType itemType because we are using an enum
 	 * 
-	 * @return The fish's BookType type.
+	 * @return The fish's BookType itemType.
 	 */
-	public BookType getWaterType() {
-		return this.waterType;
+	public BookType getBookType() {
+		return this.bookType;
 	}
 
 	/**
-	 * Set the fish's water type.
+	 * Set the fish's water itemType.
 	 * 
-	 * @param waterType The fish BookType type (enum: FRESH or SALT).
+	 * @param bookType The fish BookType itemType (enum: FRESH or SALT).
 	 */
-	public void setWaterType(BookType waterType) {
-		this.waterType = waterType;
+	public void setBookType(BookType bookType) {
+		this.bookType = bookType;
 	}	
 
 	/**
-	 * All fish can swim (behavior).
+	 * All items can be in the library (behavior). 
 	 */
-	public void swin() {
-		System.out.println(this.type + " is swimming...");
+	@Override
+ 	public void inLibrary() {
+		System.out.println(this.itemType + " is in the library....");
+	}
+	
+ 	/**
+ 	 * All items can be held for a customer (behavior).
+ 	 */
+	@Override
+	public void hold() {
+		System.out.println(this.itemType + " is on hold...");
+	}
+
+	/**
+	 * All books can be read (behavior).
+	 */
+	public void read() {
+		System.out.println(this.itemType + " is being read...");
 	}
 	
 }
