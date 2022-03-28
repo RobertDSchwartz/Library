@@ -16,14 +16,14 @@ import library.inventory.*;
  * No other class needs to access the helper methods so all the unit testing
  * methods are defined as private. 
  * 
- * @author Debbie Johnson
+ * @author Robert Schwartz
  * @version 1.0
- * @since 2021.02.16
+ * @since 2022.03.28
  */
 public class TestBench {
 	
 	/**
-	 * Stores all types of zoo animals as long as it's a derived from the Inventory class.
+	 * Stores all types of library items as long as it's a derived from the Inventory class.
 	 */
 	private static List<Inventory> libraryItems = new ArrayList<>();
 	
@@ -50,7 +50,7 @@ public class TestBench {
 		
 		TestBench.displayInfo(inventory);
 		
-		inventory.setLocation(Location.BASEMENT);
+		inventory.setLocation(Location.FIRST);
 		inventory.setInventoryType(InventoryType.RESERVE);
 		inventory.setPrice(5.5);
 		
@@ -86,29 +86,29 @@ public class TestBench {
 	}
 
 	/**
-	 * Unit test instantiation of an Movie reference variable (object)
-	 * using the default constructor
+	 * This unit test is used to instantiation an Book reference variable (object)
+	 * using the overload constructor
 	 */
-	private static void unitTest3_Movie_Default() {
+	private static void unitTest3_Book_Default() {
 		
 		System.out.println();
 		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		System.out.println();
 		
-		//create a Movie instance (object) using default constructor
-		Movie movie = new Movie();
-		libraryItems.add(movie);
-	
-		TestBench.displayInfo(movie);
-		
-		movie.setLocation(Location.BASEMENT);
-		movie.setInventoryType(InventoryType.CIRCULATING);
-		movie.setPrice(9.59);
-		
-		TestBench.displayInfo(movie);
-		movie.inLibrary();
-		movie.hold();
-		movie.show();
+		//create a Book instance (object) using overload constructor		
+		Book book = new Book();
+		libraryItems.add(book);
+
+		TestBench.displayInfo(book);
+		book.setLocation(Location.SECOND);
+		book.setInventoryType(InventoryType.REFERENCE);
+		book.setPrice(10.5);
+		TestBench.displayInfo(book);
+		book.setBookGenre(BookGenre.NONFICTION);
+		System.out.println("The book is a " + book.getBookGenre() + " book");
+		book.inLibrary();
+		book.hold();
+		book.read();
 		
 		System.out.println();
 		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -126,10 +126,12 @@ public class TestBench {
 		System.out.println();
 		
 		//create a Book instance (object) using overload constructor		
-		Book book = new Book(Location.SECOND, InventoryType.CIRCULATING, 10.5);
+		Book book = new Book(Location.SECOND, InventoryType.REFERENCE, 10.5);
 		libraryItems.add(book);
 
 		TestBench.displayInfo(book);
+		book.setBookGenre(BookGenre.NONFICTION);
+		System.out.println("The book is a " + book.getBookGenre() + " book");
 		book.inLibrary();
 		book.hold();
 		book.read();
@@ -138,33 +140,87 @@ public class TestBench {
 		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		System.out.println();
 	}
-	
+
 	/**
-	 * This unit test is used to instantiation an Book reference variable (object)
-	 * using the overload constructor
+	 * Unit test instantiation of an Movie reference variable (object)
+	 * using the default constructor
 	 */
-	private static void unitTest5_Invalid_Data() {
+	private static void unitTest5_Movie_Default() {
 		
 		System.out.println();
 		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		System.out.println();
 		
-		Movie movie = new Movie(null, InventoryType.REFERENCE, -10.5);
+		//create a Movie instance (object) using default constructor
+		Movie movie = new Movie();
+		libraryItems.add(movie);
+	
+		TestBench.displayInfo(movie);
+		movie.setLocation(Location.BASEMENT);
+		movie.setInventoryType(InventoryType.CIRCULATING);
+		movie.setPrice(9.59);
+		
+		TestBench.displayInfo(movie);
+		movie.setLength(1.58);
+		System.out.println("The movie's length is " + movie.getLength() + "  (HOURS.MINUTES)");movie.inLibrary();
+		movie.hold();
+		movie.show();
+		
+		System.out.println();
+		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
+	}
+
+	/**
+	 * Unit test instantiation of an Movie reference variable (object)
+	 * using the default constructor
+	 */
+	private static void unitTest6_Movie_Overload() {
+		
+		System.out.println();
+		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
+		
+		//create a Movie instance (object) using default constructor
+		Movie movie = new Movie(Location.BASEMENT, InventoryType.CIRCULATING, 9.59);
+		libraryItems.add(movie);
+	
+		TestBench.displayInfo(movie);
+		movie.setLength(1.58);
+		System.out.println("The movie's length is " + movie.getLength() + "  (HOURS.MINUTES)");movie.inLibrary();
+		movie.hold();
+		movie.show();
+		
+		System.out.println();
+		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
+	}
+
+	/**
+	 * This unit test is used to instantiation an Book reference variable (object)
+	 * using the overload constructor
+	 */
+	private static void unitTest7_Invalid_Data() {
+		
+		System.out.println();
+		System.out.println("Start of " + Thread.currentThread().getStackTrace()[1].getMethodName());
+		System.out.println();
+		
+		Movie movie = new Movie(null, null, -10.5);
 		libraryItems.add(movie);	
 		
 		TestBench.displayInfo(movie);
-		
 		movie.setLength(-1);
 		System.out.println("The movie's length is " + movie.getLength());
 
 		System.out.println();
 		
-		Book book = new Book(null, InventoryType.RESERVE, -10.5);	
+		Book book = new Book(null, null, -10.5);	
 		libraryItems.add(book);
 		
 		TestBench.displayInfo(book);
-		book.setBookType(BookType.FICTION);
-		System.out.println("The book is a " + book.getBookType() + " book");
+		book.setBookGenre(BookGenre.FICTION);
+		System.out.println("The book is a " + book.getBookGenre() + " book");
 		
 		System.out.println();
 		System.out.println("End of " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -173,20 +229,20 @@ public class TestBench {
 	}
 		
 	/**
-	 * Display the Inventory reference variable's id, itemType, itemType, location, and price
+	 * Display the Inventory reference variable's id, itemType, inventoryType, location, and price
 	 * 
 	 * @param inventory the reference variable data to be displayed
 	 */
 	private static void displayInfo(Inventory inventory) {
 		
-		System.out.printf("ID: %-3d  InventoryType: %-10s InventoryType: %-10s Location: %-9s   Price: %8.2f\n",
+		System.out.printf("ID: %-3d  ItemType: %-10s InventoryType: %-13s Location: %-9s   Price: %8.2f\n",
 				inventory.getId(), inventory.getType(), inventory.getInventoryType(), inventory.getLocation(), inventory.getPrice());
 		
 	} // end of displayInfo
 
 	/**
-	 * Display all Zoo Animals stored in the ArrayList.
-	 * It will display the id, itemType, itemType, location, and price
+	 * Display all library items stored in the ArrayList.
+	 * It will display the id, itemType, inventoryType, location, and price
 	 */
 	private static void displayReport() {
 		
@@ -214,9 +270,11 @@ public class TestBench {
 		
 		TestBench.unitTest1_Inventory_Default();
 		TestBench.unitTest2_Inventory_Overload();
-		TestBench.unitTest3_Movie_Default();
+		TestBench.unitTest3_Book_Default();
 		TestBench.unitTest4_Book_Overload();
-		TestBench.unitTest5_Invalid_Data();
+		TestBench.unitTest5_Movie_Default();
+		TestBench.unitTest6_Movie_Overload();
+		TestBench.unitTest7_Invalid_Data();
 		
 		TestBench.displayReport();
 		

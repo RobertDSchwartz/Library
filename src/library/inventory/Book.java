@@ -1,20 +1,24 @@
 package library.inventory;
 
-/*  
+/** 
  * The Book class is a subclass, deriving from it's parent/base class Inventory.
  * The Book extends the Inventory class. 
+ * 
+ * @author Robert Schwartz
+ * @version 1.0
+ * @since 2022.03.28
 */
 public class Book extends Inventory {
 
 	final String itemType = "Book";
 	
-	private BookType bookType;
+	private BookGenre genre;
 		
 	// default constructor
 	public Book(){
-		/* Default age in years is 0.
+		/* Default location is null
 		 * Default itemType is null.
-		 * Default price in pounds is 0.0.
+		 * Default price in dollars is 0.0.
 		 */
 		this(null, null, 0.0); // location, itemType, price
 	}
@@ -28,7 +32,7 @@ public class Book extends Inventory {
 	 */
 	public Book(Location location, InventoryType inventoryType, double price) {
 		super(location, inventoryType, price);
-		this.bookType = null;
+		this.genre = null;
 	}
 	
 	/**
@@ -42,22 +46,22 @@ public class Book extends Inventory {
 	}
 	
 	/**
-	 * Get the fish's BookType itemType (enum: FRESH or SALT).
-	 * We do not need to validate BookType itemType because we are using an enum
+	 * Get the Book's Genre (enum: FICTION or NONFICTION).
+	 * We do not need to validate BookGenre because we are using an enum
 	 * 
-	 * @return The fish's BookType itemType.
+	 * @return The book's BookGenre.
 	 */
-	public BookType getBookType() {
-		return this.bookType;
+	public BookGenre getBookGenre() {
+		return this.genre;
 	}
 
 	/**
 	 * Set the fish's water itemType.
 	 * 
-	 * @param bookType The fish BookType itemType (enum: FRESH or SALT).
+	 * @param genre The book's Genre (enum: FICTION or NONFICTION).
 	 */
-	public void setBookType(BookType bookType) {
-		this.bookType = bookType;
+	public void setBookGenre(BookGenre bookGenre) {
+		this.genre = bookGenre;
 	}	
 
 	/**

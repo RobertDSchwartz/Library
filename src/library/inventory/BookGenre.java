@@ -2,21 +2,21 @@ package library.inventory;
 
 /**
  * Enum is a special "class" that represents a group of constants 
- * Only two valid BookType types are FRESH and SALT
+ * Only two valid BookGenre types are FICTION and NONFICTION
  * 
  * @author Robert Schwartz
  * @version 1.0
- * @since 2021.02.16
+ * @since 2022.03.28
  *
  */
-public enum BookType {
+public enum BookGenre {
 	/**
-	 * BookType itemType for fiction books.
+	 * BookGenre itemType for fiction books.
 	 */
 	FICTION,
 	
 	/**
-	 * BookType itemType for non-fiction books.
+	 * BookGenre itemType for non-fiction books.
 	 */
 	NONFICTION
 }

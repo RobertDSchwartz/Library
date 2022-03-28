@@ -6,7 +6,7 @@ package library.inventory;
  * 
  * @author Robert Schwartz
  * @version 1.0
- * @since 2021.02.16
+ * @since 2022.03.28
 */
 public class Movie extends Inventory {
 
@@ -18,7 +18,7 @@ public class Movie extends Inventory {
 	final String itemType = "Movie";
 	
 	/**
-	 * The bird's leangth measured in inches.
+	 * The Movie's leangth measured in hours.minutes.
 	 */
 	private double leangth;
 
